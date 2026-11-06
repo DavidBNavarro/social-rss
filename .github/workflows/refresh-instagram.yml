@@ -31,12 +31,18 @@ jobs:
 
       - name: Start RSSHub
         run: |
+          IG_COOKIE="$(printf '%s' "${INSTAGRAM_COOKIE:-}" | tr -d '\r\n' | sed -e 's/^[Cc]ookie:[[:space:]]*//' -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e 's/;[[:space:]]*/; /g' -e 's/;[[:space:]]*$//')"
+          if [[ -n "$IG_COOKIE" ]] && { [[ "$IG_COOKIE" != *"sessionid="* ]] || [[ "$IG_COOKIE" != *"ds_user_id="* ]]; }; then
+            echo "INSTAGRAM_COOKIE must contain sessionid and ds_user_id" >&2
+            exit 1
+          fi
+          echo "INSTAGRAM_COOKIE length=${#IG_COOKIE}"
           docker run -d --name rsshub -p 1200:1200 \
             -e NODE_ENV=production \
             -e CACHE_TYPE=memory \
             -e CACHE_EXPIRE=60 \
             -e DISALLOW_ROBOT=true \
-            -e INSTAGRAM_COOKIE \
+            -e INSTAGRAM_COOKIE="$IG_COOKIE" \
             -e TWITTER_AUTH_TOKEN \
             diygod/rsshub:2026-11-05
           for i in $(seq 1 60); do
