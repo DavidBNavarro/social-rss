@@ -22,7 +22,7 @@ Use dedicated accounts, not your main ones. Keep the browser sessions logged in;
 
 ## Pages
 
-Settings → Pages → Source: Deploy from a branch → `main` → `/site`.
+Pages is deployed by the workflows themselves via GitHub Actions (`actions/deploy-pages`), not by a branch build. No manual Pages source setting is needed after the first configuration.
 
 Feed URLs:
 
@@ -31,9 +31,9 @@ https://<owner>.github.io/<repo>/feeds/x/<handle>.xml
 https://<owner>.github.io/<repo>/feeds/instagram/<handle>.xml
 ```
 
-## Test batch
+## Handles
 
-The first run uses five X handles and five Instagram handles. Confirm both workflows and the image rendering before replacing them with the full list.
+Edit `feeds-x.txt` or `feeds-instagram.txt`, commit, and run the matching workflow. The OPML is regenerated from the feeds that actually exist.
 
 ## Fallback
 
