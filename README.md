@@ -13,10 +13,12 @@ Edit `feeds-x.txt` or `feeds-instagram.txt`, one handle per line. Lines starting
 
 ## Secrets
 
-Optional, in Settings → Secrets and variables → Actions:
+Required in Settings → Secrets and variables → Actions:
 
-- `INSTAGRAM_COOKIE`: `sessionid=...; ds_user_id=...`
-- `TWITTER_AUTH_TOKEN`: only needed if the anonymous X route fails
+- `TWITTER_AUTH_TOKEN`: the `auth_token` cookie from a logged-in burner X account.
+- `INSTAGRAM_COOKIE`: `sessionid=...; ds_user_id=...` from a logged-in burner Instagram account.
+
+Use dedicated accounts, not your main ones. Keep the browser sessions logged in; logging out invalidates the cookies.
 
 ## Pages
 
