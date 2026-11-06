@@ -2,6 +2,7 @@
 set -euo pipefail
 
 owner="${GITHUB_REPOSITORY%%/*}"
+owner="$(printf '%s' "$owner" | tr '[:upper:]' '[:lower:]')"
 repo="${GITHUB_REPOSITORY#*/}"
 
 if [[ "$repo" == "$owner.github.io" ]]; then
