@@ -5,9 +5,4 @@
   <outline text="x: github" type="rss" xmlUrl="https://davidbnavarro.github.io/social-rss/feeds/x/github.xml"/>
   <outline text="x: vercel" type="rss" xmlUrl="https://davidbnavarro.github.io/social-rss/feeds/x/vercel.xml"/>
   <outline text="x: Cloudflare" type="rss" xmlUrl="https://davidbnavarro.github.io/social-rss/feeds/x/Cloudflare.xml"/>
-  <outline text="instagram: stefaniejoosten" type="rss" xmlUrl="https://davidbnavarro.github.io/social-rss/feeds/instagram/stefaniejoosten.xml"/>
-  <outline text="instagram: nasa" type="rss" xmlUrl="https://davidbnavarro.github.io/social-rss/feeds/instagram/nasa.xml"/>
-  <outline text="instagram: natgeo" type="rss" xmlUrl="https://davidbnavarro.github.io/social-rss/feeds/instagram/natgeo.xml"/>
-  <outline text="instagram: nike" type="rss" xmlUrl="https://davidbnavarro.github.io/social-rss/feeds/instagram/nike.xml"/>
-  <outline text="instagram: instagram" type="rss" xmlUrl="https://davidbnavarro.github.io/social-rss/feeds/instagram/instagram.xml"/>
 </body></opml>

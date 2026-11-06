@@ -22,6 +22,7 @@ out="docs/feeds.opml"
       handle="${raw%%#*}"
       handle="$(printf '%s' "$handle" | tr -d '[:space:]')"
       [[ -z "$handle" ]] && continue
+      [[ -f "docs/feeds/$platform/$handle.xml" ]] || continue
       printf '  <outline text="%s: %s" type="rss" xmlUrl="%s/feeds/%s/%s.xml"/>\n' \
         "$platform" "$handle" "$base" "$platform" "$handle"
     done < "$file"
