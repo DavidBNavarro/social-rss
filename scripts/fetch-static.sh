@@ -9,7 +9,7 @@ case "$platform" in
     ;;
   instagram)
     list="feeds-instagram.txt"
-    route="/instagram/2/user"
+    route="/instagram/user"
     ;;
   *)
     echo "unknown platform: $platform" >&2
