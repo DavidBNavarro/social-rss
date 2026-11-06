@@ -21,6 +21,24 @@ mkdir -p "docs/feeds/$platform"
 total=0
 failed=0
 
+# Remove XML files for handles that are no longer in the list.
+keep_file="$(mktemp)"
+trap 'rm -f "$keep_file"' EXIT
+while IFS= read -r raw; do
+  handle="${raw%%#*}"
+  handle="$(printf '%s' "$handle" | tr -d '[:space:]')"
+  [[ -z "$handle" ]] && continue
+  printf '%s.xml\n' "$handle" >> "$keep_file"
+done < "$list"
+for f in "docs/feeds/$platform"/*.xml; do
+  [[ -e "$f" ]] || continue
+  base="$(basename "$f")"
+  if ! grep -qxF "$base" "$keep_file"; then
+    rm -f "$f"
+    echo "REMOVED stale $platform/$base"
+  fi
+done
+
 while IFS= read -r raw; do
   handle="${raw%%#*}"
   handle="$(printf '%s' "$handle" | tr -d '[:space:]')"
