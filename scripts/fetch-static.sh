@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+platform="${1:?usage: fetch-static.sh x|instagram}"
+case "$platform" in
+  x)
+    list="feeds-x.txt"
+    route="/twitter/user"
+    ;;
+  instagram)
+    list="feeds-instagram.txt"
+    route="/instagram/2/user"
+    ;;
+  *)
+    echo "unknown platform: $platform" >&2
+    exit 2
+    ;;
+esac
+
+mkdir -p "site/feeds/$platform"
+total=0
+failed=0
+
+while IFS= read -r raw; do
+  handle="${raw%%#*}"
+  handle="$(printf '%s' "$handle" | tr -d '[:space:]')"
+  [[ -z "$handle" ]] && continue
+
+  total=$((total + 1))
+  tmp="site/feeds/$platform/$handle.xml.tmp"
+
+  if curl -fsS -m 45 "http://localhost:1200$route/$handle" -o "$tmp"; then
+    if python3 -c 'import sys, xml.etree.ElementTree as ET; ET.parse(sys.argv[1])' "$tmp"; then
+      mv "$tmp" "site/feeds/$platform/$handle.xml"
+      echo "OK $platform/$handle"
+    else
+      echo "INVALID XML $platform/$handle" >&2
+      rm -f "$tmp"
+      failed=$((failed + 1))
+    fi
+  else
+    echo "FETCH FAILED $platform/$handle" >&2
+    rm -f "$tmp"
+    failed=$((failed + 1))
+  fi
+
+  sleep 2
+done < "$list"
+
+echo "total: $total, failures: $failed"
+if [[ "$total" -gt 0 && "$failed" -eq "$total" ]]; then
+  exit 1
+fi
