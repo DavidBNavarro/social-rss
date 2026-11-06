@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <opml version="2.0"><head><title>Social RSS</title></head><body>
-  <outline text="x: DIYgod" type="rss" xmlUrl="https://davidbnavarro.github.io/social-rss/feeds/x/DIYgod.xml"/>
-  <outline text="x: OpenAI" type="rss" xmlUrl="https://davidbnavarro.github.io/social-rss/feeds/x/OpenAI.xml"/>
-  <outline text="x: github" type="rss" xmlUrl="https://davidbnavarro.github.io/social-rss/feeds/x/github.xml"/>
-  <outline text="x: vercel" type="rss" xmlUrl="https://davidbnavarro.github.io/social-rss/feeds/x/vercel.xml"/>
-  <outline text="x: Cloudflare" type="rss" xmlUrl="https://davidbnavarro.github.io/social-rss/feeds/x/Cloudflare.xml"/>
+  <outline text="x: emollick" type="rss" xmlUrl="https://davidbnavarro.github.io/social-rss/feeds/x/emollick.xml"/>
 </body></opml>
