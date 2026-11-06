@@ -10,7 +10,7 @@ else
   base="https://$owner.github.io/$repo"
 fi
 
-out="site/feeds.opml"
+out="docs/feeds.opml"
 {
   echo '<?xml version="1.0" encoding="UTF-8"?>'
   echo '<opml version="2.0"><head><title>Social RSS</title></head><body>'

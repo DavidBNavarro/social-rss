@@ -17,7 +17,7 @@ case "$platform" in
     ;;
 esac
 
-mkdir -p "site/feeds/$platform"
+mkdir -p "docs/feeds/$platform"
 total=0
 failed=0
 
@@ -27,11 +27,11 @@ while IFS= read -r raw; do
   [[ -z "$handle" ]] && continue
 
   total=$((total + 1))
-  tmp="site/feeds/$platform/$handle.xml.tmp"
+  tmp="docs/feeds/$platform/$handle.xml.tmp"
 
   if curl -fsS -m 45 "http://localhost:1200$route/$handle" -o "$tmp"; then
     if python3 -c 'import sys, xml.etree.ElementTree as ET; ET.parse(sys.argv[1])' "$tmp"; then
-      mv "$tmp" "site/feeds/$platform/$handle.xml"
+      mv "$tmp" "docs/feeds/$platform/$handle.xml"
       echo "OK $platform/$handle"
     else
       echo "INVALID XML $platform/$handle" >&2
