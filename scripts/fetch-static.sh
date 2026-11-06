@@ -40,6 +40,11 @@ while IFS= read -r raw; do
     fi
   else
     echo "FETCH FAILED $platform/$handle" >&2
+    echo "--- response body ---" >&2
+    curl -sS -m 45 -D - "http://localhost:1200$route/$handle" 2>&1 | head -40 >&2 || true
+    echo "--- rsshub logs ---" >&2
+    docker logs --tail 40 rsshub 2>&1 || true
+    echo "--- end diagnostics ---" >&2
     rm -f "$tmp"
     failed=$((failed + 1))
   fi

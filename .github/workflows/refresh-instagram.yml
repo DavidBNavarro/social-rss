@@ -47,6 +47,10 @@ jobs:
       - name: Fetch Instagram feeds
         run: ./scripts/fetch-static.sh instagram
 
+      - name: RSSHub logs
+        if: failure()
+        run: docker logs --tail 120 rsshub || true
+
       - name: Generate OPML
         run: ./scripts/gen-opml-static.sh
 
