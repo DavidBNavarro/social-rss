@@ -67,7 +67,8 @@ while IFS= read -r raw; do
     failed=$((failed + 1))
   fi
 
-  sleep 2
+  # Spread requests to look like normal browsing: ~10s average, 7-13s range.
+  sleep $((7 + RANDOM % 7))
 done < "$list"
 
 echo "total: $total, failures: $failed"
